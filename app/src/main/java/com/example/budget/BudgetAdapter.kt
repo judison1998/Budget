@@ -16,11 +16,10 @@ class BudgetAdapter (private val listItem : ArrayList<ItemModal>, private  val c
                 .inflate(R.layout.item, parent , false )
             return BudgetViewHolder(itemView)
         }
-
         override fun onBindViewHolder(holder:BudgetAdapter.BudgetViewHolder, position: Int) {
             holder.itemName.text = listItem[position].itemName
             holder.image.setImageResource(listItem[position].image)
-            holder.price.text = listItem[position].price
+            holder.price.text = listItem[position].price.toString()
         }
 
         override fun getItemCount(): Int {
