@@ -17,7 +17,6 @@ class BudgetAdapter (private val listItem : ArrayList<ItemModal>, private  val c
         }
         override fun onBindViewHolder(holder:BudgetAdapter.BudgetViewHolder, position: Int) {
             holder.itemName.text = listItem[position].itemName
-            //holder.image.setImageResource(R.drawable.packos)
             holder.image.setImageResource(listItem[position].image)
             holder.price.text = listItem[position].price.toString()
         }
