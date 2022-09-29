@@ -2,10 +2,11 @@ package com.example.budget
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class ListActivity : AppCompatActivity() {
+class ListActivity : AppCompatActivity(),BudgetAdapter.ClickInterface {
 
     lateinit var listRV : RecyclerView
     lateinit var budgetAdapter: BudgetAdapter
@@ -31,5 +32,9 @@ class ListActivity : AppCompatActivity() {
 
         budgetAdapter.notifyDataSetChanged()
 
+    }
+
+    override fun onItemClick(itemModal: ItemModal) {
+        Toast.makeText(this,"Item Clicked",Toast.LENGTH_SHORT).show()
     }
 }

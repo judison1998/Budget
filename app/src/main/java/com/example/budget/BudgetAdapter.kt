@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class BudgetAdapter (private val listItem : ArrayList<ItemModal>, private  val context: Context)
+class BudgetAdapter (private val listItem : ArrayList<ItemModal>, val clickInterface: ClickInterface )
     : RecyclerView.Adapter<BudgetAdapter.BudgetViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : BudgetAdapter.BudgetViewHolder{
@@ -20,6 +20,10 @@ class BudgetAdapter (private val listItem : ArrayList<ItemModal>, private  val c
             holder.itemName.text = listItem[position].itemName
             holder.image.setImageResource(listItem[position].image)
             holder.price.text = listItem[position].price.toString()
+
+            holder.image.setOnClickListener {
+                clickInterface.onItemClick(listItem[position])
+            }
         }
 
         override fun getItemCount(): Int {
@@ -31,6 +35,10 @@ class BudgetAdapter (private val listItem : ArrayList<ItemModal>, private  val c
         var price : TextView = itemView.findViewById(R.id.item_price)
         var image : ImageView = itemView.findViewById(R.id.imageView)
 
+    }
+
+    interface ClickInterface {
+        fun onItemClick (itemModal: ItemModal)
     }
 
 }
