@@ -14,19 +14,26 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:padding="16dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/box"
         android:ems="10"
         android:hint="@string/search_budget"
         android:inputType="textPersonName"
+        android:padding="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toTopOf="@+id/list_recyclerview"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toTopOf="parent" />
+
+    <SearchView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/search"
+        app:layout_constraintTop_toTopOf="@+id/search" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_recyclerview"
