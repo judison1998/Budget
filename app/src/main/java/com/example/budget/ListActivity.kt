@@ -1,7 +1,10 @@
 package com.example.budget
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,9 +15,14 @@ class ListActivity : AppCompatActivity(),BudgetAdapter.ClickInterface {
     lateinit var budgetAdapter: BudgetAdapter
     lateinit var listItem : ArrayList<ItemModal>
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
+
+
+
+
 
         listRV = findViewById(R.id.list_recyclerview)
 
@@ -35,6 +43,17 @@ class ListActivity : AppCompatActivity(),BudgetAdapter.ClickInterface {
     }
 
     override fun onItemClick(itemModal: ItemModal) {
-        Toast.makeText(this,"Item Clicked",Toast.LENGTH_SHORT).show()
+
+        val image = itemModal.image
+        val itemName = itemModal.itemName
+        val price = itemModal.price
+
+        intent = Intent(this,DetailsActivity::class.java)
+        intent.putExtra("Image", image)
+        intent.putExtra("ItemName", itemName)
+        intent.putExtra("Price", price)
+        startActivity(intent)
+
+//        Toast.makeText(this,"Item Clicked",Toast.LENGTH_SHORT).show()
     }
 }
