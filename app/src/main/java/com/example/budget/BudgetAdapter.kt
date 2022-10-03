@@ -1,6 +1,5 @@
 package com.example.budget
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +18,6 @@ class BudgetAdapter (private val listItem : ArrayList<ItemModal>, val clickInter
             holder.itemName.text = listItem[position].itemName
             holder.image.setImageResource(listItem[position].image)
             holder.price.text = listItem[position].price.toString()
-
             holder.image.setOnClickListener {
                 clickInterface.onItemClick(listItem[position])
             }
@@ -27,8 +25,7 @@ class BudgetAdapter (private val listItem : ArrayList<ItemModal>, val clickInter
         override fun getItemCount(): Int {
         return listItem.size
     }
-
-    class BudgetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        class BudgetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemName : TextView = itemView.findViewById(R.id.item_name)
         var price : TextView = itemView.findViewById(R.id.item_price)
         var image : ImageView = itemView.findViewById(R.id.imageView)
@@ -36,6 +33,7 @@ class BudgetAdapter (private val listItem : ArrayList<ItemModal>, val clickInter
     }
 
     interface ClickInterface {
+
         fun onItemClick (itemModal: ItemModal)
     }
 
