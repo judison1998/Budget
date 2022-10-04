@@ -6,26 +6,32 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.budget.database.BudgetItem
 
-class BudgetAdapter (private val listItem : ArrayList<ItemModal>, val clickInterface: ClickInterface )
+class BudgetAdapter (private val itemList : ArrayList<BudgetItem>, val clickInterface: ClickInterface )
     : RecyclerView.Adapter<BudgetAdapter.BudgetViewHolder>() {
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : BudgetAdapter.BudgetViewHolder{
             val itemView = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item, parent , false )
             return BudgetViewHolder(itemView)
         }
         override fun onBindViewHolder(holder:BudgetAdapter.BudgetViewHolder, position: Int) {
-            holder.itemName.text = listItem[position].itemName
-            holder.image.setImageResource(listItem[position].image)
-            holder.price.text = listItem[position].price.toString()
+            holder.itemName.text = itemList[position].itemName
+
+            holder.image.setImageResource(itemList[position].image)
+
+            holder.price.text = itemList[position].price.toString()
+
             holder.image.setOnClickListener {
-                clickInterface.onItemClick(listItem[position])
+                clickInterface.onItemClick(itemList[position])
             }
         }
         override fun getItemCount(): Int {
-        return listItem.size
+        return itemList.size
     }
         class BudgetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         var itemName : TextView = itemView.findViewById(R.id.item_name)
         var price : TextView = itemView.findViewById(R.id.item_price)
         var image : ImageView = itemView.findViewById(R.id.imageView)
@@ -34,7 +40,7 @@ class BudgetAdapter (private val listItem : ArrayList<ItemModal>, val clickInter
 
     interface ClickInterface {
 
-        fun onItemClick (itemModal: ItemModal)
+        fun onItemClick (budgetItem: BudgetItem)
     }
 
 }

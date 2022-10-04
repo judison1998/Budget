@@ -35,7 +35,7 @@ class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
          var database = BudgetDatabase.getInstance(this)
         val layoutManager = GridLayoutManager(this, 2)
         listRV.layoutManager = layoutManager
-        budgetAdapter = BudgetAdapter(listItem, this)
+        budgetAdapter = BudgetAdapter(itemList, this)
         listRV.adapter = budgetAdapter
 
         listItem.add(ItemModal("Chairs", 200000, R.drawable.chairs))
@@ -59,9 +59,9 @@ class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
         database.budgetDao().insert(itemList)
         println("items added to db ${itemList.size}")
     }
-    override fun onItemClick(itemModal: ItemModal) {
+    override fun onItemClick(budgetItem: BudgetItem) {
         val intent=Intent(this,DetailsActivity::class.java)
-        intent.putExtra("modelled_item",itemModal as Serializable)
+        intent.putExtra("modelled_item",budgetItem as Serializable)
         startActivity(intent)
 
     }

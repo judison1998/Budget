@@ -1,23 +1,18 @@
 package com.example.budget
 
-//import android.R
-import android.content.Intent
-import android.graphics.BitmapFactory
-import android.media.Image
+
 import android.os.Bundle
-import android.util.Log.i
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class DetailsActivity : AppCompatActivity() {
     lateinit var details: TextView
     lateinit var price2: TextView
     lateinit var image2: ImageView
-    lateinit var button_add:Button
+    lateinit var button_add: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -32,17 +27,8 @@ class DetailsActivity : AppCompatActivity() {
         image2.setImageResource(itemModal.image)
 
 
-        button_add=findViewById(R.id.btn_add)
-        button_add.setOnClickListener{
-            if (itemModal!=null){
-                val selectedItem = arrayListOf<ItemModal>()
-                //selectedItem: ArrayList<ItemModal> =
-                 selectedItem.add(itemModal)
-                Toast.makeText(this,"item added to cart successfuly",Toast.LENGTH_SHORT).show()
+        button_add = findViewById(R.id.btn_add)
 
-            }
-
-        }
 
 
     }
