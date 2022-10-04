@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities=[BudgetItem::class],version = 1)
+@Database(entities=[BudgetItem::class],version = 2)
 abstract class BudgetDatabase : RoomDatabase() {
     abstract fun budgetDao() : BugetDao
 
@@ -22,7 +22,9 @@ abstract class BudgetDatabase : RoomDatabase() {
             }
             synchronized(this){
                 val instance = Room.databaseBuilder(context.applicationContext,
-                    BudgetDatabase::class.java,"budget_database").build()
+                    BudgetDatabase::class.java,"budget_database")
+                   .allowMainThreadQueries()
+                    .build()
                 INSTANCE = instance
                 return instance
             }
