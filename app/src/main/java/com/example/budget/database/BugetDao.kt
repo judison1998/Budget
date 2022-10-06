@@ -3,6 +3,7 @@ package com.example.budget.database
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
@@ -16,7 +17,7 @@ interface BugetDao {
     @Insert
     fun insert(budgetItem: BudgetItem)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(budgetItems: List<BudgetItem>)
 
 

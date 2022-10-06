@@ -6,6 +6,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import com.example.budget.database.BudgetDatabase
 
 class DetailsActivity : AppCompatActivity() {
     lateinit var details: TextView
@@ -17,14 +19,25 @@ class DetailsActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val itemModal = intent.extras!!.get("modelled_item") as ItemModal
 
-        details = findViewById(R.id.item_details)
-        details.text = itemModal.itemName
-        price2 = findViewById(R.id.price)
-        price2.text = itemModal.price.toString()
-        image2 = findViewById(R.id.image2)
-        image2.setImageResource(itemModal.image)
+        val itemId = intent.extras!!.get("modelled_item")
+
+        var database = BudgetDatabase.getInstance(this)
+
+        database.budgetDao().getBudgetItem(id = itemId as Int).observe(this, Observer {
+
+            details = findViewById(R.id.item_details)
+            details.text = it.itemName
+
+            price2 = findViewById(R.id.price)
+            price2.text = it.price.toString()
+
+            image2 = findViewById(R.id.image2)
+            image2.setImageResource(it.image)
+
+        })
+
+
 
 
         button_add = findViewById(R.id.btn_add)

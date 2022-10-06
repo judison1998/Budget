@@ -1,7 +1,14 @@
 <resources>
-    <string name="app_name">Budget</string>
+    <string name="app_name">I Shop</string>
     <string name="price">Item Price</string>
     <string name="itemName">TextView</string>
     <string name="search_budget">Search Budget Items</string>
     <string name="details">Details!</string>
+    <string name="men_s_wear">Men\'s Wear</string>
+    <string name="women_s_wear">Women\'s Wear</string>
+    <string name="causal_shoes">Causal Shoes</string>
+    <string name="sneakers">Sneakers</string>
+    <string name="sandles">Sandles</string>
+    <string name="home_alliance">Home Alliance</string>
+    <string name="bags">Bags</string>
 </resources>

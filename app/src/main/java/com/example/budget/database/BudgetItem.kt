@@ -10,7 +10,7 @@ import java.io.Serializable
  @PrimaryKey(autoGenerate = true) var id : Int = 0,
  var image : Int,
  var itemName : String,
- var price : Int) : Serializable
+ var price : Int) 
 
 
 
