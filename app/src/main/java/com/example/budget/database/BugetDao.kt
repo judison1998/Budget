@@ -21,9 +21,9 @@ interface BugetDao {
     fun insert(budgetItems: List<BudgetItem>)
 
     @Insert
-    fun insert(cartItems : CartItem)
+    fun insert(cartItem : CartItem)
 
-    @Query("SELECT * FROM Cart WHERE id= :id")
-    fun getCartItem(id: Int) : LiveData<List<CartItem>>
+    @Query("SELECT * FROM Cart ORDER bY  id")
+    fun getAllCartItem() : LiveData<List<CartItem>>
 
 }

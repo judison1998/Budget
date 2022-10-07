@@ -1,10 +1,11 @@
 package com.example.budget
 
 //import android.R
+
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -13,17 +14,16 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Database
 import com.example.budget.database.BudgetDatabase
 import com.example.budget.database.BudgetItem
 import com.google.android.material.navigation.NavigationView
-import java.io.ByteArrayOutputStream
-import java.io.Serializable
 
 
 class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
 
+
     lateinit var drawerLayout: DrawerLayout
+
 
     lateinit var actionBarToggle : ActionBarDrawerToggle
 
@@ -41,7 +41,6 @@ class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
-
         drawerLayout = findViewById(R.id.drawerLayout)
 
         actionBarToggle = ActionBarDrawerToggle(this, drawerLayout, 0, 0)
@@ -91,15 +90,13 @@ class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
         }
 
         listRV = findViewById(R.id.list_recyclerview)
-
-
          var database = BudgetDatabase.getInstance(this)
         val layoutManager = GridLayoutManager(this, 2)
         listRV.layoutManager = layoutManager
 
 
         itemList = ArrayList()
-
+//
 //        itemList.add(BudgetItem(1,R.drawable.chairs,"Chair",50000))
 //        itemList.add(BudgetItem(2,R.drawable.cups,"Cup",60000))
 //        itemList.add(BudgetItem(3,R.drawable.packos,"Kettle",20000))
@@ -148,11 +145,26 @@ class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
         }
     }
 
-
         override fun onItemClick(budgetItem: BudgetItem) {
         val intent = Intent(this,DetailsActivity::class.java)
         intent.putExtra("modelled_item",budgetItem.id )
         startActivity(intent)
 
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.action_bar_item, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id: Int = item.getItemId()
+
+         if (id == R.id.cart) {
+
+            intent = Intent(this,BudgetListActivity::class.java)
+             startActivity(intent)
+            true
+        } else super.onOptionsItemSelected(item)
+        return true
     }
 }

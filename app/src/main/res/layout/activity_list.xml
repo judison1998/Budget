@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -18,8 +17,6 @@
         app:menu="@menu/drawer_list"
         app:headerLayout="@layout/nav_header" />
 
-
-
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -34,7 +31,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/box"
         android:ems="10"
-        android:hint="@string/search_budget"
+        android:hint="@string/search_i_shop"
         android:inputType="textPersonName"
         android:padding="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -69,6 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/search"
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

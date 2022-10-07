@@ -2,7 +2,7 @@
     <string name="app_name">I Shop</string>
     <string name="price">Item Price</string>
     <string name="itemName">TextView</string>
-    <string name="search_budget">Search Budget Items</string>
+    <string name="search_i_shop">Search on I Shop</string>
     <string name="details">Details!</string>
     <string name="men_s_wear">Men\'s Wear</string>
     <string name="women_s_wear">Women\'s Wear</string>
@@ -12,4 +12,5 @@
     <string name="home_alliance">Home Alliance</string>
     <string name="bags">Bags</string>
     <string name="kettle">kettle</string>
+
 </resources>

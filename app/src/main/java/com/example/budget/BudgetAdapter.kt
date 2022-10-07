@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.budget.database.BudgetItem
 
@@ -22,10 +23,12 @@ class BudgetAdapter (private val itemList : ArrayList<BudgetItem>, val clickInte
             holder.image.setImageResource(itemList[position].image)
 
             holder.price.text = itemList[position].price.toString()
-
-            holder.image.setOnClickListener {
+            holder.cardView.setOnClickListener {
                 clickInterface.onItemClick(itemList[position])
             }
+//            holder.image.setOnClickListener {
+//                clickInterface.onItemClick(itemList[position])
+//            }
         }
         override fun getItemCount(): Int {
         return itemList.size
@@ -35,6 +38,7 @@ class BudgetAdapter (private val itemList : ArrayList<BudgetItem>, val clickInte
         var itemName : TextView = itemView.findViewById(R.id.item_name)
         var price : TextView = itemView.findViewById(R.id.item_price)
         var image : ImageView = itemView.findViewById(R.id.imageView)
+            var cardView :CardView = itemView.findViewById(R.id.card_item)
 
     }
 
