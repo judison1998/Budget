@@ -118,8 +118,8 @@ class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
 //        itemList.add(BudgetItem(16,R.drawable.dior_t_shirt,"Dior T Shirt",300000))
 //        itemList.add(BudgetItem(16,R.drawable.jordan4,"Jordan 4",35000))
 //        itemList.add(BudgetItem(17,R.drawable.samsung_galaxy_z_flip,"Samsung Galaxy ",40000))
-
-
+//
+//
 //        database.budgetDao().insert(itemList)
 
         println("items added to db ${itemList.size}")

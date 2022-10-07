@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class SelectedItemsAdapter(
+
     private val selectedItems: ArrayList<ItemModal>,
     private val context: Context
 ) : RecyclerView.Adapter<SelectedItemsAdapter.SelectedItemViewHolder>() {
@@ -26,6 +27,7 @@ class SelectedItemsAdapter(
         holder: SelectedItemsAdapter.SelectedItemViewHolder,
         position: Int
     ) {
+
 
     }
 

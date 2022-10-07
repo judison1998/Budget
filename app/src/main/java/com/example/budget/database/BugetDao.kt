@@ -20,5 +20,10 @@ interface BugetDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(budgetItems: List<BudgetItem>)
 
+    @Insert
+    fun insert(cartItems : CartItem)
+
+    @Query("SELECT * FROM Cart WHERE id= :id")
+    fun getCartItem(id: Int) : LiveData<List<CartItem>>
 
 }

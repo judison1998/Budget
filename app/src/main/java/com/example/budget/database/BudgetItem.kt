@@ -10,7 +10,17 @@ import java.io.Serializable
  @PrimaryKey(autoGenerate = true) var id : Int = 0,
  var image : Int,
  var itemName : String,
- var price : Int) 
+ var price : Int)
+
+@Entity(tableName = "Cart")
+data class CartItem (
+ @PrimaryKey(autoGenerate = true)
+ var id: Int = 0,
+ var image : Int,
+ var itemName : String,
+ var price : Int
+
+        )
 
 
 

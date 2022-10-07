@@ -14,5 +14,7 @@ class BudgetListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_budget_list)
 
+
+
     }
 }
