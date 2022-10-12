@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    android:padding="8dp"
+
+    android:layout_height="match_parent"
+    tools:context=".account.RegisterActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:text="Register Account" />
+    <EditText
+        android:textColor="#FFFFFF"
+        android:drawableLeft="@drawable/person"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/user_name"
+        android:gravity="start"
+        android:textColorHint="#FFFFFF"
+        android:hint="user name"
+        android:background="@drawable/box"
+        android:layout_marginTop="32dp"/>
+    <EditText
+        android:textColor="#FFFFFF"
+        android:padding="8dp"
+        android:drawableLeft="@drawable/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/email"
+        android:gravity="start"
+        android:textColorHint="#FFFFFF"
+        android:hint="Email"
+        android:background="@drawable/box"
+        android:layout_marginTop="32dp"/>
+    <EditText
+        android:textColor="#FFFFFF"
+        android:drawableLeft="@drawable/lock"
+        android:padding="8dp"
+        android:textColorHint="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/password"
+        android:gravity="start"
+        android:hint="Password"
+        android:background="@drawable/box"
+        android:layout_marginTop="32dp"/>
+    <EditText
+        android:textColor="#FFFFFF"
+        android:drawableLeft="@drawable/lock"
+        android:padding="8dp"
+        android:textColorHint="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/confirm_password"
+        android:gravity="start"
+        android:hint="Confirm Password"
+        android:background="@drawable/box"
+        android:layout_marginTop="32dp"/>
+    <TextView
+        android:padding="8dp"
+        android:textColor="#FFFFFF"
+        android:id="@+id/forgot_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="end"
+        android:text="forgot password?" />
+    <Button
+        android:id="@+id/signUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+
+        android:text="Sign Up" />
+    <TextView
+        android:padding="8dp"
+        android:id="@+id/already_have_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="end"
+        android:textColor="#FFFFFF"
+        android:text="Already have an account? Login" />
+
+    </LinearLayout>
+
+</layout>
