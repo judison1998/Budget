@@ -2,6 +2,7 @@ package com.example.budget
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,10 +11,10 @@ import com.example.budget.database.BudgetDatabase
 import com.example.budget.database.BudgetItem
 import com.example.budget.database.CartItem
 
-class BudgetListActivity : AppCompatActivity() {
+class BudgetListActivity : AppCompatActivity(), SelectedItemsAdapter.ClickInterface {
+
     lateinit var cartAdapter: SelectedItemsAdapter
     lateinit var cartItems:ArrayList<CartItem>
-
     lateinit var cart_recylerview: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +25,7 @@ class BudgetListActivity : AppCompatActivity() {
         actionbar!!.title = "Cart"
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
+
         cart_recylerview = findViewById(R.id.budget_recylerview)
         var database = BudgetDatabase.getInstance(this)
         val layoutManager = LinearLayoutManager(this,)
@@ -48,4 +50,14 @@ class BudgetListActivity : AppCompatActivity() {
         onBackPressed()
         return true
     }
+
+    override fun onItemClick(cartItem: CartItem) {
+        var database = BudgetDatabase.getInstance(this)
+        database.budgetDao().deleteById(id = cartItem.id)
+    }
+
+//    private fun removeItem(position: Int){
+//        cartAdapter.notifyItemRemoved()
+//        notifyItemRemoved(position)
+//    }
 }

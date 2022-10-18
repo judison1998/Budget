@@ -26,4 +26,7 @@ interface BugetDao {
     @Query("SELECT * FROM Cart ORDER bY  id")
     fun getAllCartItem() : LiveData<List<CartItem>>
 
+    @Query("DELETE FROM Cart WHERE id = :id")
+    fun deleteById(id: Int)
+
 }
