@@ -23,6 +23,7 @@ class BudgetAdapter (private val itemList : ArrayList<BudgetItem>, val clickInte
             holder.image.setImageResource(itemList[position].image)
 
             holder.price.text = itemList[position].price.toString()
+
             holder.cardView.setOnClickListener {
                 clickInterface.onItemClick(itemList[position])
             }
