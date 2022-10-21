@@ -2,9 +2,11 @@ package com.example.budget
 
 
 data class ItemModal (
-    var id : Int = 0,
-    var itemName:String,
-    var price:Int,
-    var image:Int
+    val id : Int,
+    val product_name:String ,
+    val product_price:Int,
+    val product_image:String
+
     
         )
+
