@@ -39,11 +39,9 @@ class BudgetAdapter(private val itemList: List<BudgetItem>,
         return itemList.size
     }
         class BudgetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-             var itemName : TextView = itemView.findViewById(R.id.item_name)
+            var itemName : TextView = itemView.findViewById(R.id.item_name)
         var price : TextView = itemView.findViewById(R.id.item_price)
         var image : ImageView = itemView.findViewById(R.id.imageView)
-
        var cardView :CardView = itemView.findViewById(R.id.card_item)
 
     }
