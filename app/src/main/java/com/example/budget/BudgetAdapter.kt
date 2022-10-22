@@ -7,9 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.budget.database.BudgetItem
 
-class BudgetAdapter (private val itemList : ArrayList<BudgetItem>, val clickInterface: ClickInterface )
+class BudgetAdapter(private val itemList: List<BudgetItem>,
+                   val clickInterface: ClickInterface
+                    )
     : RecyclerView.Adapter<BudgetAdapter.BudgetViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : BudgetAdapter.BudgetViewHolder{
@@ -17,7 +20,8 @@ class BudgetAdapter (private val itemList : ArrayList<BudgetItem>, val clickInte
                 .inflate(R.layout.item, parent , false )
             return BudgetViewHolder(itemView)
         }
-        override fun onBindViewHolder(holder:BudgetAdapter.BudgetViewHolder, position: Int) {
+        override fun onBindViewHolder(holder:BudgetViewHolder, position: Int) {
+
             holder.itemName.text = itemList[position].itemName
 
             holder.image.setImageResource(itemList[position].image)
@@ -27,19 +31,18 @@ class BudgetAdapter (private val itemList : ArrayList<BudgetItem>, val clickInte
             holder.cardView.setOnClickListener {
                 clickInterface.onItemClick(itemList[position])
             }
-//            holder.image.setOnClickListener {
-//                clickInterface.onItemClick(itemList[position])
-//            }
+            holder.image.setOnClickListener {
+                clickInterface.onItemClick(itemList[position])
+            }
         }
         override fun getItemCount(): Int {
         return itemList.size
     }
         class BudgetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        var itemName : TextView = itemView.findViewById(R.id.item_name)
+            var itemName : TextView = itemView.findViewById(R.id.item_name)
         var price : TextView = itemView.findViewById(R.id.item_price)
         var image : ImageView = itemView.findViewById(R.id.imageView)
-            var cardView :CardView = itemView.findViewById(R.id.card_item)
+       var cardView :CardView = itemView.findViewById(R.id.card_item)
 
     }
 
