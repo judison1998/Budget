@@ -1,6 +1,6 @@
 package com.example.budget.database
 
-import android.content.Context
+import android.app.Application
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -14,7 +14,7 @@ abstract class BudgetDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE : BudgetDatabase? = null
 
-        fun getInstance(context: Context) : BudgetDatabase {
+        fun getInstance(context: Application) : BudgetDatabase {
             var instance = INSTANCE
 
             if (instance != null) {

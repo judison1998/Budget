@@ -1,12 +1,10 @@
 package com.example.budget
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -15,11 +13,13 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.budget.account.LoginActivity
 import com.example.budget.account.ProfileActivity
 import com.example.budget.database.BudgetDatabase
 import com.example.budget.database.BudgetItem
+import com.example.budget.network.IshopNetwork
 import com.google.android.material.navigation.NavigationView
+import java.util.concurrent.Callable
+import java.util.concurrent.Executors
 
 
 class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
@@ -40,6 +40,16 @@ class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
+
+
+        var call = Callable{
+            IshopNetwork.getHttpResponse("http://192.168.43.203/ishop/getProducts.php")
+        }
+      //  var call = Callable{IshopNetwork.getHttpResponse("https://en.wikipedia.org/wiki/Artificial_intelligence")}
+        var results = Executors.newSingleThreadExecutor().submit(call)
+
+        Log.d("Kelly","Data received: $results")
+
         drawerLayout = findViewById(R.id.drawerLayout)
 
         actionBarToggle = ActionBarDrawerToggle(this, drawerLayout, 0, 0)
@@ -86,7 +96,7 @@ class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
             }
         }
         listRV = findViewById(R.id.list_recyclerview)
-        var database = BudgetDatabase.getInstance(this)
+        var database = BudgetDatabase.getInstance(application)
         val layoutManager = GridLayoutManager(this, 2)
         listRV.layoutManager = layoutManager
 

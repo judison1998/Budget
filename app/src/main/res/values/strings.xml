@@ -13,5 +13,8 @@
     <string name="bags">Bags</string>
     <string name="kettle">kettle</string>
     <string name="remove">remove</string>
+    <string name="phones">Phones</string>
+    <string name="cart">cart</string>
+    <string name="account">account</string>
 
 </resources>

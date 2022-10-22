@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.budget.database.BudgetDatabase
-import com.example.budget.database.BudgetItem
 import com.example.budget.database.CartItem
 
  class DetailsActivity : AppCompatActivity() {
@@ -44,7 +43,7 @@ import com.example.budget.database.CartItem
 
         val itemId = intent.extras!!.get("modelled_item")
 
-        var database = BudgetDatabase.getInstance(this)
+        var database = BudgetDatabase.getInstance(application)
 
         database.budgetDao().getBudgetItem(id = itemId as Int).observe(this, Observer {
 

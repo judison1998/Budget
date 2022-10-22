@@ -1,9 +1,8 @@
-package com.example.budget
+package com.example.budget.network
 
-import com.beust.klaxon.Json
+import com.squareup.moshi.Json
 
-
-data class ItemModal (
+data class Products (
     @Json(name = "product_id")
     val productID: String,
 
@@ -15,7 +14,5 @@ data class ItemModal (
 
     @Json(name = "product_image")
     val productImage: String
-)
 
-
-
+         )
