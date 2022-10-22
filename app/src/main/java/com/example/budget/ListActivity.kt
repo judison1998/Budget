@@ -16,9 +16,7 @@ import com.example.budget.account.ProfileActivity
 import com.example.budget.database.BudgetDatabase
 import com.example.budget.database.BudgetItem
 import com.google.android.material.navigation.NavigationView
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+
 
 class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
     lateinit var data :MutableList<ItemModal>
@@ -115,6 +113,7 @@ class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
 //
 //            budgetAdapter.notifyDataSetChanged()
 //        })
+        Log.i("oncreate","on create called")
     }
 
     override fun onSupportNavigateUp(): Boolean {
