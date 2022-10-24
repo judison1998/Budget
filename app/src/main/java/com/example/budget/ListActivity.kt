@@ -18,6 +18,8 @@ import com.example.budget.database.BudgetDatabase
 import com.example.budget.database.BudgetItem
 import com.example.budget.network.IshopNetwork
 import com.google.android.material.navigation.NavigationView
+import org.json.JSONArray
+import org.json.JSONTokener
 import java.util.concurrent.Callable
 import java.util.concurrent.Executors
 
@@ -41,14 +43,30 @@ class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
+        var database = BudgetDatabase.getInstance(application)
 
-        var call = Callable{
-            IshopNetwork.getHttpResponse("http://192.168.43.203/ishop/getProducts.php")
+
+        var call = Callable {
+            IshopNetwork.getHttpResponse("http://192.168.0.127/ishop/getProducts.php")
         }
-      //  var call = Callable{IshopNetwork.getHttpResponse("https://en.wikipedia.org/wiki/Artificial_intelligence")}
+        //  var call = Callable{IshopNetwork.getHttpResponse("https://en.wikipedia.org/wiki/Artificial_intelligence")}
         var results = Executors.newSingleThreadExecutor().submit(call)
 
-        Log.d("Kelly","Data received: $results")
+        val budgetItemJsonArray = JSONTokener(results.get()).nextValue() as JSONArray
+        for (i in 0 until budgetItemJsonArray.length()) {
+
+            val id = budgetItemJsonArray.getJSONObject(i).getInt("product_id")
+            val productName = budgetItemJsonArray.getJSONObject(i).getString("product_name")
+            val productImage = budgetItemJsonArray.getJSONObject(i).getString("product_image")
+            val productPrice = budgetItemJsonArray.getJSONObject(i).getDouble("product_price")
+            Log.i("ListActivity","Id: $id Name: $productName product Price: $productPrice ")
+
+            var productModal = BudgetItem(id, productImage, productName, productPrice)
+            database.budgetDao().insert(productModal)
+
+        }
+
+        Log.d("Kelly", "Data received: $results")
 
         drawerLayout = findViewById(R.id.drawerLayout)
 
@@ -96,37 +114,37 @@ class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
             }
         }
         listRV = findViewById(R.id.list_recyclerview)
-        var database = BudgetDatabase.getInstance(application)
+
         val layoutManager = GridLayoutManager(this, 2)
         listRV.layoutManager = layoutManager
 
 
         itemList = ArrayList()
 
-        itemList.add(BudgetItem(1,R.drawable.chairs,"Chair",50000))
-        itemList.add(BudgetItem(2,R.drawable.cups,"Cup",60000))
-        itemList.add(BudgetItem(3,R.drawable.packos,"Kettle",20000))
-        itemList.add(BudgetItem(4,R.drawable.plates,"Plate",4000))
-        itemList.add(BudgetItem(5,R.drawable.spoons,"Spoon",90000))
-        itemList.add(BudgetItem(6,R.drawable.bag,"Bag",50400))
-        itemList.add(BudgetItem(7,R.drawable.bag2,"Other bag",300000))
-        itemList.add(BudgetItem(8,R.drawable.shirt_news,"Shirt News",35000))
-        itemList.add(BudgetItem(9,R.drawable.white_shirt,"White Shirt",40000))
-        itemList.add(BudgetItem(10,R.drawable.air_force_1,"Air Force 1",50000))
-        itemList.add(BudgetItem(11,R.drawable.air_force_1_multiple,"Air Force 1 Multiple",60000))
-        itemList.add(BudgetItem(12,R.drawable.air_force_brown,"Air Force Brown",20000))
-        itemList.add(BudgetItem(13,R.drawable.air_force_dark_grey,"Air Force Dark Grey",4000))
-        itemList.add(BudgetItem(14,R.drawable.air_force_jordan,"Air Force Jordan",90000))
-        itemList.add(BudgetItem(15,R.drawable.crocs,"Crocs",50400))
-        itemList.add(BudgetItem(16,R.drawable.dior_t_shirt,"Dior T Shirt",300000))
-        itemList.add(BudgetItem(16,R.drawable.jordan4,"Jordan 4",35000))
-        itemList.add(BudgetItem(17,R.drawable.samsung_galaxy_z_flip,"Samsung Galaxy ",40000))
-        database.budgetDao().insert(itemList)
+//        itemList.add(BudgetItem(1,R.drawable.chairs,"Chair",50000))
+//        itemList.add(BudgetItem(2,R.drawable.cups,"Cup",60000))
+//        itemList.add(BudgetItem(3,R.drawable.packos,"Kettle",20000))
+//        itemList.add(BudgetItem(4,R.drawable.plates,"Plate",4000))
+//        itemList.add(BudgetItem(5,R.drawable.spoons,"Spoon",90000))
+//        itemList.add(BudgetItem(6,R.drawable.bag,"Bag",50400))
+//        itemList.add(BudgetItem(7,R.drawable.bag2,"Other bag",300000))
+//        itemList.add(BudgetItem(8,R.drawable.shirt_news,"Shirt News",35000))
+//        itemList.add(BudgetItem(9,R.drawable.white_shirt,"White Shirt",40000))
+//        itemList.add(BudgetItem(10,R.drawable.air_force_1,"Air Force 1",50000))
+//        itemList.add(BudgetItem(11,R.drawable.air_force_1_multiple,"Air Force 1 Multiple",60000))
+//        itemList.add(BudgetItem(12,R.drawable.air_force_brown,"Air Force Brown",20000))
+//        itemList.add(BudgetItem(13,R.drawable.air_force_dark_grey,"Air Force Dark Grey",4000))
+//        itemList.add(BudgetItem(14,R.drawable.air_force_jordan,"Air Force Jordan",90000))
+//        itemList.add(BudgetItem(15,R.drawable.crocs,"Crocs",50400))
+//        itemList.add(BudgetItem(16,R.drawable.dior_t_shirt,"Dior T Shirt",300000))
+//        itemList.add(BudgetItem(16,R.drawable.jordan4,"Jordan 4",35000))
+//        itemList.add(BudgetItem(17,R.drawable.samsung_galaxy_z_flip,"Samsung Galaxy ",40000))
+//        database.budgetDao().insert(itemList)
 
 //        println("items added to db ${itemList.size}")
 
         database.budgetDao().getAllBudgetItems().observe(this, Observer {
-          // itemList.addAll(it)
+            itemList.addAll(it)
             budgetAdapter = BudgetAdapter(itemList, this)
             listRV.adapter = budgetAdapter
 
@@ -151,7 +169,7 @@ class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
 
     override fun onItemClick(budgetItem: BudgetItem) {
         val intent = Intent(this, DetailsActivity::class.java)
-        intent.putExtra("modelled_item", budgetItem.id)
+        intent.putExtra("modelled_item", budgetItem.productID)
         startActivity(intent)
 
     }
@@ -168,11 +186,10 @@ class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
 
             intent = Intent(applicationContext, BudgetListActivity::class.java)
             startActivity(intent)
-        } else if (id == R.id.account){
+        } else if (id == R.id.account) {
             intent = Intent(applicationContext, ProfileActivity::class.java)
             startActivity(intent)
-        }
-        else super.onOptionsItemSelected(item)
+        } else super.onOptionsItemSelected(item)
         return true
     }
 }

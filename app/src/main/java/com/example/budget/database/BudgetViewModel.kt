@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.example.budget.ItemModal
 import com.example.budget.network.IshopApi
 //import com.example.budget.network.IshopApi
@@ -28,23 +27,23 @@ class BudgetViewModel(application: Application) : AndroidViewModel(application) 
         val budgetDao = BudgetDatabase.getInstance(application).budgetDao()
         budgetRepository = BudgetDatabaseRepository(budgetDao)
 
-        getProducts()
+//        getProducts()
     }
 
     val allBudgetItems: LiveData<List<BudgetItem>> = budgetRepository.getAllBudgetItems()
 
-    private fun getProducts() {
-        viewModelScope.launch {
-            try {
-               val listResult = IshopApi.retrofitService.getProducts()
-                _status.value = "Success: ${listResult.size} Products retrieved"
-
-            } catch (e:Exception){
-                _status.value = "Failure: ${e.message}"
-            }
-
-        }
-
-    }
+//    private fun getProducts() {
+//        viewModelScope.launch {
+//            try {
+//               val listResult = IshopApi.retrofitService.getProducts()
+//                _status.value = "Success: ${listResult.size} Products retrieved"
+//
+//            } catch (e:Exception){
+//                _status.value = "Failure: ${e.message}"
+//            }
+//
+//        }
+//
+//    }
 
 }

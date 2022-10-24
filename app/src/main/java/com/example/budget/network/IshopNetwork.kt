@@ -1,6 +1,8 @@
 package com.example.budget.network
 
 import android.util.Log
+import org.json.JSONObject
+import org.json.JSONTokener
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
@@ -37,6 +39,7 @@ class IshopNetwork {
                 val hasNext = scanner.hasNext()
                 if (hasNext) {
                     val results = scanner.next()
+
                     Log.i(
                         "Jude",
                         "The data from server is: $results"
@@ -48,7 +51,7 @@ class IshopNetwork {
                 }
             } catch (e: IOException) {
                 e.printStackTrace()
-                Log.d("keth", "Oops, error: " + e.message)
+                Log.d("Keth", "Oops, error: " + e.message)
                 null
             } finally {
                 connection?.disconnect()

@@ -11,6 +11,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.budget.database.BudgetItem
 import com.example.budget.database.CartItem
+import com.squareup.picasso.MemoryPolicy
+import com.squareup.picasso.Picasso
 
 class SelectedItemsAdapter( private val cartItems: ArrayList<CartItem>, val clickInterface: ClickInterface )
     : RecyclerView.Adapter<SelectedItemsAdapter.SelectedItemViewHolder>() {
@@ -23,9 +25,18 @@ class SelectedItemsAdapter( private val cartItems: ArrayList<CartItem>, val clic
     }
     override fun onBindViewHolder(  holder: SelectedItemsAdapter.SelectedItemViewHolder, position: Int ) {
 
+        var data = cartItems[position]
+
         holder.itemName.text = cartItems[position].itemName
 
-        holder.image.setImageResource(cartItems[position].image)
+        val baseUrl = "http://192.168.0.127/ishop/media/"
+        val pImage = baseUrl + data.image
+
+        Picasso.get().load(pImage)
+            .placeholder(R.drawable.ic_launcher_foreground)
+            .fit().centerCrop()
+            .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+            .into(holder.image)
 
         holder.price.text = cartItems[position].price.toString()
 

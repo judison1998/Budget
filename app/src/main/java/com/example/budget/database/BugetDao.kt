@@ -8,13 +8,13 @@ import androidx.room.Query
 
 @Dao
 interface BugetDao {
-    @Query("SELECT * FROM BudgetItem ORDER BY id DESC")
+    @Query("SELECT * FROM BudgetItem")
     fun getAllBudgetItems(): LiveData<List<BudgetItem>>
 
-    @Query("SELECT * FROM BudgetItem WHERE id =:id")
+    @Query("SELECT * FROM BudgetItem WHERE productID =:id")
     fun getBudgetItem(id: Int): LiveData<BudgetItem>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(budgetItem: BudgetItem)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -1,9 +1,9 @@
 package com.example.budget.network
 
 
+import com.example.budget.database.BudgetItem
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import retrofit.http.GET
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
@@ -20,8 +20,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
         .build()
 
     interface IshopApiService {
-        @GET("products")
-       suspend fun getProducts(): List<Products>
+        @retrofit2.http.GET("products")
+       suspend fun getProducts(): List<BudgetItem>
     }
 
     object IshopApi {

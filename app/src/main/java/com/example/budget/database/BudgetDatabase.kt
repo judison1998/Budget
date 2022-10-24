@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [BudgetItem::class , CartItem::class],version = 3)
+@Database(entities = [BudgetItem::class , CartItem::class],version = 4)
 abstract class BudgetDatabase : RoomDatabase() {
     abstract fun budgetDao() : BugetDao
 

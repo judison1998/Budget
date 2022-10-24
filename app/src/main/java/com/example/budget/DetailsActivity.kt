@@ -11,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.budget.database.BudgetDatabase
 import com.example.budget.database.CartItem
+import com.squareup.picasso.MemoryPolicy
+import com.squareup.picasso.Picasso
 
- class DetailsActivity : AppCompatActivity() {
+class DetailsActivity : AppCompatActivity() {
     lateinit var details: TextView
     lateinit var price2: TextView
     lateinit var image2: ImageView
@@ -48,13 +50,22 @@ import com.example.budget.database.CartItem
         database.budgetDao().getBudgetItem(id = itemId as Int).observe(this, Observer {
 
             details = findViewById(R.id.item_details)
-            details.text = it.itemName
+            details.text = it.productName
 
             price2 = findViewById(R.id.price)
-            price2.text = it.price.toString()
+            price2.text = it.productPrice.toString()
+
+            val baseUrl = "http://192.168.0.127/ishop/media/"
+            val pImage = baseUrl + it.productImage
 
             image2 = findViewById(R.id.image2)
-            image2.setImageResource(it.image)
+//            image2.setImageResource(it.productImage)
+
+            Picasso.get().load(pImage)
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .fit().centerCrop()
+                .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                .into(image2)
 
         })
 
@@ -62,7 +73,7 @@ import com.example.budget.database.CartItem
         button_add.setOnClickListener {
             database.budgetDao().getBudgetItem(id = itemId as Int).observe(this, Observer {
 
-                var cartModel = CartItem(it.id,it.image,it.itemName,it.price)
+                var cartModel = CartItem(it.productID,it.productImage,it.productName,it.productPrice)
                 database.budgetDao().insert(cartModel)
                println("cart modal item: ${cartModel.itemName}")
             })
