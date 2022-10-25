@@ -11,7 +11,7 @@ import com.example.budget.database.BudgetItem
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 
-class BudgetAdapter(private val itemList: List<BudgetItem>,
+class BudgetAdapter(private var itemList: List<BudgetItem>,
                    val clickInterface: ClickInterface
                     )
     : RecyclerView.Adapter<BudgetAdapter.BudgetViewHolder>() {
@@ -22,6 +22,11 @@ class BudgetAdapter(private val itemList: List<BudgetItem>,
             return BudgetViewHolder(itemView)
 
         }
+    fun filterList(filterlist: ArrayList<BudgetItem>) {
+        itemList = filterlist
+        notifyDataSetChanged()
+    }
+
         override fun onBindViewHolder(holder:BudgetViewHolder, position: Int) {
             val data = itemList[position]
             val itemName = data.productName

@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
@@ -67,30 +68,7 @@ class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
         bottomNav = findViewById(R.id.bottomNav)
 
         bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
-        bottomNav.setOnNavigationItemReselectedListener {
-            when (it.itemId) {
-                R.id.home -> {
-                    val i = Intent(this, ListActivity::class.java)
-                    startActivity(i)
-                    return@setOnNavigationItemReselectedListener
-                }
-                R.id.profile -> {
-                    val i = Intent(this, ProfileActivity::class.java)
-                    startActivity(i)
-                    return@setOnNavigationItemReselectedListener
-                }
-                R.id.categories -> {
-                    val i = Intent(this, ListActivity::class.java)
-                    startActivity(i)
-                    return@setOnNavigationItemReselectedListener
-                }
-                R.id.help -> {
-                    val i = Intent(this, ProfileActivity::class.java)
-                    startActivity(i)
-                    return@setOnNavigationItemReselectedListener
 
-                }
-            }
 
             listRV = findViewById(R.id.list_recyclerview)
 
@@ -110,7 +88,39 @@ class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
                 println("Items from db ${it.size}")
 
                 budgetAdapter.notifyDataSetChanged()
-            })
+            }
+            )
+
+
+
+        bottomNav?.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.home -> {
+                    val i = Intent(this, ListActivity::class.java)
+                    startActivity(i)
+                    finish()
+                    return@setOnItemSelectedListener true
+                }
+                R.id.profile -> {
+                    val i = Intent(this, ProfileActivity::class.java)
+                    startActivity(i)
+                    finish()
+                    return@setOnItemSelectedListener true
+                }
+                R.id.categories -> {
+                    val i = Intent(this, ListActivity::class.java)
+                    startActivity(i)
+                    finish()
+                    return@setOnItemSelectedListener true
+                }
+                R.id.help -> {
+                    val i = Intent(this, ProfileActivity::class.java)
+                    startActivity(i)
+                    finish()
+                    return@setOnItemSelectedListener true
+                }
+                else -> {return@setOnItemSelectedListener true}
+            }
         }
     }
     override fun onItemClick(budgetItem: BudgetItem) {
