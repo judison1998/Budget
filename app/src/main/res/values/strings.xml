@@ -16,5 +16,11 @@
     <string name="phones">Phones</string>
     <string name="cart">cart</string>
     <string name="account">account</string>
+    <string name="add">Add</string>
+    <string name="categories">Categories</string>
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
+    <string name="help">Help</string>
+    <string name="profile_acc">Account</string>
 
 </resources>

@@ -17,6 +17,7 @@ import com.example.budget.account.ProfileActivity
 import com.example.budget.database.BudgetDatabase
 import com.example.budget.database.BudgetItem
 import com.example.budget.network.IshopNetwork
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import org.json.JSONArray
 import org.json.JSONTokener
@@ -26,12 +27,7 @@ import java.util.concurrent.Executors
 
 class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
 
-    lateinit var drawerLayout: DrawerLayout
-
-
-    lateinit var actionBarToggle: ActionBarDrawerToggle
-
-    lateinit var navView: NavigationView
+    lateinit var bottomNav: BottomNavigationView
 
     lateinit var listRV: RecyclerView
 
@@ -59,7 +55,7 @@ class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
             val productName = budgetItemJsonArray.getJSONObject(i).getString("product_name")
             val productImage = budgetItemJsonArray.getJSONObject(i).getString("product_image")
             val productPrice = budgetItemJsonArray.getJSONObject(i).getDouble("product_price")
-            Log.i("ListActivity","Id: $id Name: $productName product Price: $productPrice ")
+            Log.i("ListActivity", "Id: $id Name: $productName product Price: $productPrice ")
 
             var productModal = BudgetItem(id, productImage, productName, productPrice)
             database.budgetDao().insert(productModal)
@@ -68,112 +64,61 @@ class ListActivity : AppCompatActivity(), BudgetAdapter.ClickInterface {
 
         Log.d("Kelly", "Data received: $results")
 
-        drawerLayout = findViewById(R.id.drawerLayout)
+        bottomNav = findViewById(R.id.bottomNav)
 
-        actionBarToggle = ActionBarDrawerToggle(this, drawerLayout, 0, 0)
-        drawerLayout.addDrawerListener(actionBarToggle)
+        bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
+        bottomNav.setOnNavigationItemReselectedListener {
+            when (it.itemId) {
+                R.id.home -> {
+                    val i = Intent(this, ListActivity::class.java)
+                    startActivity(i)
+                    return@setOnNavigationItemReselectedListener
+                }
+                R.id.profile -> {
+                    val i = Intent(this, ProfileActivity::class.java)
+                    startActivity(i)
+                    return@setOnNavigationItemReselectedListener
+                }
+                R.id.categories -> {
+                    val i = Intent(this, ListActivity::class.java)
+                    startActivity(i)
+                    return@setOnNavigationItemReselectedListener
+                }
+                R.id.help -> {
+                    val i = Intent(this, ProfileActivity::class.java)
+                    startActivity(i)
+                    return@setOnNavigationItemReselectedListener
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        actionBarToggle.syncState()
-        navView = findViewById(R.id.navView)
-        navView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.bags -> {
-                    Toast.makeText(this, "Bags", Toast.LENGTH_SHORT).show()
-                    intent = Intent(this, DetailsActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-                R.id.causalShoes -> {
-                    Toast.makeText(this, "Causal Shoes", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.homeAlliance -> {
-                    Toast.makeText(this, "Home Alliance", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.menWear -> {
-                    Toast.makeText(this, "Men's Wear", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.sandles -> {
-                    Toast.makeText(this, "Sandles", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.sneakers -> {
-                    Toast.makeText(this, "Sneakers", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.womenWear -> {
-                    Toast.makeText(this, "Women's Wear", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                else -> {
-                    false
                 }
             }
-        }
-        listRV = findViewById(R.id.list_recyclerview)
 
-        val layoutManager = GridLayoutManager(this, 2)
-        listRV.layoutManager = layoutManager
+            listRV = findViewById(R.id.list_recyclerview)
+
+            val layoutManager = GridLayoutManager(this, 2)
+            listRV.layoutManager = layoutManager
 
 
-        itemList = ArrayList()
+            itemList = ArrayList()
 
-//        itemList.add(BudgetItem(1,R.drawable.chairs,"Chair",50000))
-//        itemList.add(BudgetItem(2,R.drawable.cups,"Cup",60000))
-//        itemList.add(BudgetItem(3,R.drawable.packos,"Kettle",20000))
-//        itemList.add(BudgetItem(4,R.drawable.plates,"Plate",4000))
-//        itemList.add(BudgetItem(5,R.drawable.spoons,"Spoon",90000))
-//        itemList.add(BudgetItem(6,R.drawable.bag,"Bag",50400))
-//        itemList.add(BudgetItem(7,R.drawable.bag2,"Other bag",300000))
-//        itemList.add(BudgetItem(8,R.drawable.shirt_news,"Shirt News",35000))
-//        itemList.add(BudgetItem(9,R.drawable.white_shirt,"White Shirt",40000))
-//        itemList.add(BudgetItem(10,R.drawable.air_force_1,"Air Force 1",50000))
-//        itemList.add(BudgetItem(11,R.drawable.air_force_1_multiple,"Air Force 1 Multiple",60000))
-//        itemList.add(BudgetItem(12,R.drawable.air_force_brown,"Air Force Brown",20000))
-//        itemList.add(BudgetItem(13,R.drawable.air_force_dark_grey,"Air Force Dark Grey",4000))
-//        itemList.add(BudgetItem(14,R.drawable.air_force_jordan,"Air Force Jordan",90000))
-//        itemList.add(BudgetItem(15,R.drawable.crocs,"Crocs",50400))
-//        itemList.add(BudgetItem(16,R.drawable.dior_t_shirt,"Dior T Shirt",300000))
-//        itemList.add(BudgetItem(16,R.drawable.jordan4,"Jordan 4",35000))
-//        itemList.add(BudgetItem(17,R.drawable.samsung_galaxy_z_flip,"Samsung Galaxy ",40000))
-//        database.budgetDao().insert(itemList)
 
-//        println("items added to db ${itemList.size}")
 
-        database.budgetDao().getAllBudgetItems().observe(this, Observer {
-            itemList.addAll(it)
-            budgetAdapter = BudgetAdapter(itemList, this)
-            listRV.adapter = budgetAdapter
+            database.budgetDao().getAllBudgetItems().observe(this, Observer {
+                itemList.addAll(it)
+                budgetAdapter = BudgetAdapter(itemList, this)
+                listRV.adapter = budgetAdapter
 
-            println("Items from db ${it.size}")
+                println("Items from db ${it.size}")
 
-            budgetAdapter.notifyDataSetChanged()
-        })
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        drawerLayout.openDrawer(navView)
-        return true
-    }
-
-    override fun onBackPressed() {
-        if (this.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            this.drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
+                budgetAdapter.notifyDataSetChanged()
+            })
         }
     }
-
     override fun onItemClick(budgetItem: BudgetItem) {
         val intent = Intent(this, DetailsActivity::class.java)
         intent.putExtra("modelled_item", budgetItem.productID)
         startActivity(intent)
 
     }
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.action_bar_item, menu)
         return true

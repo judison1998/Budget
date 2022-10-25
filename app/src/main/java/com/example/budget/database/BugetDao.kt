@@ -20,7 +20,7 @@ interface BugetDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(budgetItems: List<BudgetItem>)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(cartItem : CartItem)
 
     @Query("SELECT * FROM Cart ORDER bY  id")

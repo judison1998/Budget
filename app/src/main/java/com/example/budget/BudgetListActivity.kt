@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.budget.database.BudgetDatabase
 import com.example.budget.database.CartItem
 
-class BudgetListActivity : AppCompatActivity(), SelectedItemsAdapter.ClickInterface {
+class BudgetListActivity : AppCompatActivity(), SelectedItemsAdapter.OnClickListenerInterface {
 
     lateinit var cartAdapter: SelectedItemsAdapter
     lateinit var cartItems:ArrayList<CartItem>
@@ -34,7 +34,7 @@ class BudgetListActivity : AppCompatActivity(), SelectedItemsAdapter.ClickInterf
         cartItems = ArrayList()
         database.budgetDao().getAllCartItem().observe(this, Observer {
         cartItems.addAll(it)
-            cartAdapter = SelectedItemsAdapter(cartItems,this)
+            cartAdapter = SelectedItemsAdapter(cartItems, this)
             cart_recylerview.setHasFixedSize(true)
             cart_recylerview.adapter = cartAdapter
             cartAdapter.notifyDataSetChanged()
@@ -48,13 +48,15 @@ class BudgetListActivity : AppCompatActivity(), SelectedItemsAdapter.ClickInterf
         return true
     }
 
-    override fun onItemClick(cartItem: CartItem) {
-        var database = BudgetDatabase.getInstance(application)
-        database.budgetDao().deleteById(id = cartItem.id)
+    override fun onClick(position: Int) {
+        val database = BudgetDatabase.getInstance(application)
+        database.budgetDao().deleteById(id = position)
+
     }
 
-//    private fun removeItem(position: Int){
-//        cartAdapter.notifyItemRemoved()
-//        notifyItemRemoved(position)
+//    fun onClick(cartItem: CartItem) {
+//        val database = BudgetDatabase.getInstance(application)
+//        database.budgetDao().deleteById(id = cartItem.id)
 //    }
+
 }

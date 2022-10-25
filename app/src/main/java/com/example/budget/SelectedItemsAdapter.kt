@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
@@ -14,16 +15,23 @@ import com.example.budget.database.CartItem
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 
-class SelectedItemsAdapter( private val cartItems: ArrayList<CartItem>, val clickInterface: ClickInterface )
-    : RecyclerView.Adapter<SelectedItemsAdapter.SelectedItemViewHolder>() {
+class SelectedItemsAdapter(private val cartItems: ArrayList<CartItem>, val onClickInterface: OnClickListenerInterface) :
+    RecyclerView.Adapter<SelectedItemsAdapter.SelectedItemViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup,  viewType: Int ): SelectedItemsAdapter.SelectedItemViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): SelectedItemsAdapter.SelectedItemViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.budget_list_item, parent, false)
         return SelectedItemsAdapter.SelectedItemViewHolder(itemView)
 
     }
-    override fun onBindViewHolder(  holder: SelectedItemsAdapter.SelectedItemViewHolder, position: Int ) {
+
+    override fun onBindViewHolder(
+        holder: SelectedItemsAdapter.SelectedItemViewHolder,
+        position: Int
+    ) {
 
         var data = cartItems[position]
 
@@ -40,43 +48,50 @@ class SelectedItemsAdapter( private val cartItems: ArrayList<CartItem>, val clic
 
         holder.price.text = cartItems[position].price.toString()
 
-        holder.removeButton.setOnClickListener {
-            clickInterface.onItemClick(cartItems[position])
-        }
-
 //        holder.removeButton.setOnClickListener {
-//            if(onClickListener != null){
-//                onClickListener!!.onClick(cartItems[position])
-//                removeButton(position)
-//            }
+//            clickInterface.onItemClick(cartItems[position])
 //        }
+
+        holder.removeButton.setOnClickListener {
+            if (onClickInterface != null) {
+                onClickInterface!!.onClick(position)
+                removeItem(position)
+            }
+        }
 
 
     }
 
     class SelectedItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var itemName : TextView = itemView.findViewById(R.id.itemName)
-        var price : TextView = itemView.findViewById(R.id.itemPrice)
-        var image : ImageView = itemView.findViewById(R.id.item_image)
+        var itemName: TextView = itemView.findViewById(R.id.itemName)
+        var price: TextView = itemView.findViewById(R.id.itemPrice)
+        var image: ImageView = itemView.findViewById(R.id.item_image)
 
-        var removeButton : Button = itemView.findViewById(R.id.remove)
+        var removeButton: Button = itemView.findViewById(R.id.remove)
 
     }
+
     override fun getItemCount(): Int {
         return cartItems.size
     }
 
-    private var onClickListener : View.OnClickListener? = null
+//    private var onClickListener: OnClickListener? = null
+//
+//    fun setOnClickListener(onClickListener: OnClickListener) {
+//        this.onClickListener = onClickListener
+//    }
 
-    fun setOnClickListener(onClickListener: View.OnClickListener){
-        this.onClickListener = onClickListener
+    interface OnClickListenerInterface {
+        fun onClick(position: Int) {
+        }
     }
 
-    interface ClickInterface {
-
-        fun onItemClick (cartItem: CartItem)
+    private fun removeItem(position: Int) {
+        cartItems.removeAt(position)
+        notifyItemRemoved(position)
     }
 
 
 }
+

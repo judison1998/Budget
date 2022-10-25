@@ -59,7 +59,6 @@ class DetailsActivity : AppCompatActivity() {
             val pImage = baseUrl + it.productImage
 
             image2 = findViewById(R.id.image2)
-//            image2.setImageResource(it.productImage)
 
             Picasso.get().load(pImage)
                 .placeholder(R.drawable.ic_launcher_foreground)
