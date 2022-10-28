@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.budget">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,33 +14,54 @@
         android:roundIcon="@drawable/icon_keth"
         android:supportsRtl="true"
         android:theme="@style/Theme.Budget"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".KidsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:theme="@style/AppTheme.Budget"
+            android:name=".HelpActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".SplashScreen"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
+            android:theme="@style/AppTheme.Budget"
             android:name=".account.ProfileActivity"
             android:exported="false" />
-        <activity android:name=".account.RegisterActivity" />
-        <activity android:name=".account.LoginActivity" />
+        <activity android:name=".account.RegisterActivity"
+            android:theme="@style/AppTheme.Budget"/>
+        <activity android:name=".account.LoginActivity"
+            android:theme="@style/AppTheme.Budget"
+            />
         <activity
+            android:theme="@style/AppTheme.Budget"
             android:name=".BudgetListActivity"
             android:exported="false" />
         <activity
             android:name=".ListActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"
+            android:theme="@style/AppTheme.Budget" />
         <activity
+            android:theme="@style/AppTheme.Budget"
             android:name=".DetailsActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>

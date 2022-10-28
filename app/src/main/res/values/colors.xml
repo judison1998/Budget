@@ -6,4 +6,7 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="green_800">#BF360C</color>
     <color name="black">#FF000000</color>
+    <color name="colorPrimary">#3F3E3E</color>
+    <color name="colorPrimaryDark">#D8D2CB</color>
+    <color name="colorAccent">#E39D36</color>
 </resources>

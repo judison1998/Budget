@@ -3,6 +3,8 @@ package com.example.budget
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -29,7 +31,6 @@ class DetailsActivity : AppCompatActivity() {
 
         val actionbar = supportActionBar
         actionbar!!.title = "Details"
-        actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
 
 
@@ -83,12 +84,28 @@ class DetailsActivity : AppCompatActivity() {
         database.budgetDao().getAllCartItem().observe(this, Observer {
             println("number of items in cart = ${it.size}")
         })
-
-
     }
 
      override fun onSupportNavigateUp(): Boolean {
          onBackPressed()
          return true
      }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.action_bar_item, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id: Int = item.getItemId()
+
+        if (id == R.id.cart) {
+
+            intent = Intent(applicationContext, BudgetListActivity::class.java)
+            startActivity(intent)
+        } else if (id == android.R.id.home)  {
+            onBackPressed()
+        }
+            else super.onOptionsItemSelected(item)
+        return true
+    }
 }
