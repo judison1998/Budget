@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/drawable/box.xml" value="0.2405" />
+        <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/drawable/circular_background.xml" value="0.102" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/drawable/email_icon.xml" value="0.1335" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/activity_budget_list.xml" value="0.1" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/activity_list.xml" value="0.1" />
@@ -17,6 +18,9 @@
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/activity_user_list.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/budget_list_item.xml" value="0.1" />
+        <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/fragment_all.xml" value="0.1" />
+        <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/fragment_kids.xml" value="0.1" />
+        <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/fragment_men.xml" value="0.1" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/item.xml" value="0.1" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/nav_header.xml" value="0.20677083333333332" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/user_item.xml" value="0.20833333333333334" />

@@ -78,7 +78,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
+    override fun onBackPressed() {
+        val intent = Intent(this,ListActivity::class.java)
+        startActivity(intent)
+    }
     private fun signInGoogle() {
         val signInIntent: Intent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, Req_Code)

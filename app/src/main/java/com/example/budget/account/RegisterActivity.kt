@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.budget.ListActivity
 import com.example.budget.R
 import com.example.budget.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -54,5 +55,9 @@ class RegisterActivity : AppCompatActivity() {
             intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
         }
+    }
+    override fun onBackPressed() {
+        val intent = Intent(this, ListActivity::class.java)
+        startActivity(intent)
     }
 }

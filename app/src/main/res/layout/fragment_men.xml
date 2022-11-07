@@ -3,13 +3,95 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/men"
-    android:gravity="center"
-    android:background="#FFC300">
+    android:padding="8dp"
+    android:orientation ="vertical"
 
-    <TextView
+    android:background="#F4F4F3">
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/men"
-        />
+        android:orientation ="horizontal"
+        android:layout_marginLeft="25dp"
+
+
+        android:text="@string/men">
+        <TextView
+            android:background="@drawable/circular_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textSize = "20sp"
+            android:textColor = "#FFFFFF"
+            android:layout_margin="15dp"
+
+            android:text ="T-shirts"/>
+        <TextView
+            android:background="@drawable/circular_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_margin="15dp"
+            android:textSize = "20sp"
+            android:textColor = "#FFFFFF"
+
+            android:text ="Shirts"/>
+        <TextView
+            android:background="@drawable/circular_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_margin="15dp"
+            android:textColor = "#FFFFFF"
+            android:textSize = "20sp"
+            android:text ="Trousers"/>
+
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation ="horizontal"
+        android:layout_marginLeft="25dp"
+
+        android:text="@string/men">
+        <TextView
+            android:background="@drawable/circular_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textColor = "#FFFFFF"
+            android:layout_margin="15dp"
+
+            android:textSize = "20sp"
+            android:text ="T-shirts"/>
+        <TextView
+            android:background="@drawable/circular_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textSize = "20sp"
+            android:layout_margin="15dp"
+            android:textColor = "#FFFFFF"
+            android:text ="Shirts"/>
+        <TextView
+            android:background="@drawable/circular_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textSize = "20sp"
+            android:layout_margin="15dp"
+            android:textColor = "#FFFFFF"
+
+            android:text ="Trousers"/>
+
+
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         />
 
 </LinearLayout>

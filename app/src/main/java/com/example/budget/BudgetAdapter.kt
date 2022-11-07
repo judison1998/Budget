@@ -16,7 +16,7 @@ class BudgetAdapter(private var itemList: List<BudgetItem>,
                     )
     : RecyclerView.Adapter<BudgetAdapter.BudgetViewHolder>() {
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : BudgetAdapter.BudgetViewHolder{
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : BudgetViewHolder{
             val itemView = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item, parent , false )
             return BudgetViewHolder(itemView)
@@ -66,8 +66,6 @@ class BudgetAdapter(private var itemList: List<BudgetItem>,
             var price : TextView = itemView.findViewById(R.id.item_price)
             var cardView :CardView = itemView.findViewById(R.id.card_item)
             var image : ImageView = itemView.findViewById(R.id.imageView)
-
-
     }
 
     interface ClickInterface {

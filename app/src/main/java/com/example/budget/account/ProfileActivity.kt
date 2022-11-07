@@ -13,6 +13,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import kotlin.system.exitProcess
 
 class ProfileActivity : AppCompatActivity() {
     lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -52,6 +53,10 @@ class ProfileActivity : AppCompatActivity() {
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
+    }
+    override fun onBackPressed() {
+        val intent = Intent(this,ListActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onStart() {

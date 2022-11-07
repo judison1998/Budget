@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.budget.ItemModal
 import com.example.budget.network.IshopApi
 //import com.example.budget.network.IshopApi
 import kotlinx.coroutines.launch

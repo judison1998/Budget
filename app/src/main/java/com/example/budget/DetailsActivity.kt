@@ -15,6 +15,7 @@ import com.example.budget.database.BudgetDatabase
 import com.example.budget.database.CartItem
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
+import kotlin.system.exitProcess
 
 class DetailsActivity : AppCompatActivity() {
     lateinit var details: TextView
@@ -85,7 +86,10 @@ class DetailsActivity : AppCompatActivity() {
             println("number of items in cart = ${it.size}")
         })
     }
-
+    override fun onBackPressed() {
+        val intent = Intent(this,ListActivity::class.java)
+        startActivity(intent)
+    }
      override fun onSupportNavigateUp(): Boolean {
          onBackPressed()
          return true
