@@ -13,7 +13,6 @@
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="0.5dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"    >
@@ -66,7 +65,6 @@
                 android:id="@+id/tabs"
                 app:layout_constraintTop_toBottomOf="@id/toolbar"
                 android:layout_width="match_parent"
-
                 android:layout_height="20dp"
                 app:tabBackground="@color/green_500"
                 app:tabGravity="fill"
@@ -86,13 +84,15 @@
 <!--                app:tabMode="fixed"-->
 <!--                app:tabTextColor="@color/colorPrimaryDark" />-->
             </com.google.android.material.appbar.AppBarLayout>
+
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+                app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+                tools:ignore="SpeakableTextPresentCheck">
 
             </androidx.viewpager.widget.ViewPager>
 

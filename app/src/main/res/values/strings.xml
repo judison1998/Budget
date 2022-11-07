@@ -28,5 +28,10 @@
     <string name="women">Women</string>
     <string name="kids">Kids</string>
     <string name="all">All</string>
+    <string name="check_out">Check Out</string>
+    <string name="email">email</string>
+    <string name="phone">Phone</string>
+    <string name="location">Location</string>
+    <string name="proceed_to_payment">Proceed To Payment</string>
 
 </resources>

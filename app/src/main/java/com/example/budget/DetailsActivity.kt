@@ -36,15 +36,7 @@ class DetailsActivity : AppCompatActivity() {
 
 
 
-         cartItems = ArrayList()
-        check_cart=findViewById(R.id.check_cart)
-        check_cart.setOnClickListener{
-            intent = Intent(this,BudgetListActivity::class.java)
-            startActivity(intent)
-        }
-
-
-
+        cartItems = ArrayList()
         val itemId = intent.extras!!.get("modelled_item")
 
         var database = BudgetDatabase.getInstance(application)
