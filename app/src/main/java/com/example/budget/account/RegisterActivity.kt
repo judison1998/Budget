@@ -20,6 +20,10 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val actionbar = supportActionBar
+        actionbar!!.title = "Register"
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.textView.setOnClickListener {

@@ -22,7 +22,6 @@ class DetailsActivity : AppCompatActivity() {
     lateinit var price2: TextView
     lateinit var image2: ImageView
     lateinit var button_add: Button
-    lateinit var check_cart:Button
 
     lateinit var cartItems : ArrayList<CartItem>
 
@@ -33,24 +32,11 @@ class DetailsActivity : AppCompatActivity() {
         val actionbar = supportActionBar
         actionbar!!.title = "Details"
         actionbar.setDisplayHomeAsUpEnabled(true)
-
-
-
          cartItems = ArrayList()
-        check_cart=findViewById(R.id.check_cart)
-        check_cart.setOnClickListener{
-            intent = Intent(this,BudgetListActivity::class.java)
-            startActivity(intent)
-        }
-
-
-
         val itemId = intent.extras!!.get("modelled_item")
 
         var database = BudgetDatabase.getInstance(application)
-
         database.budgetDao().getBudgetItem(id = itemId as Int).observe(this, Observer {
-
             details = findViewById(R.id.item_details)
             details.text = it.productName
 
