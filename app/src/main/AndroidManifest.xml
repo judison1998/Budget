@@ -52,6 +52,11 @@
             />
         <activity
             android:theme="@style/AppTheme.Budget"
+            android:name=".CheckOutActivity"
+            android:exported="false"/>
+
+        <activity
+            android:theme="@style/AppTheme.Budget"
             android:name=".BudgetListActivity"
             android:exported="false" />
         <activity

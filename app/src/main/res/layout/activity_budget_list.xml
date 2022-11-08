@@ -9,14 +9,16 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/budget_recylerview"
         android:layout_width="match_parent"
-        android:layout_height="520dp"/>
+        android:layout_height="wrap_content">
 
-<Button
-    android:layout_margin="15dp"
-    android:layout_width = "match_parent"
-    android:text ="check out now"
-    android:padding = "10dp"
-    android:textColor ="#FFF"
-    android:layout_height = "wrap_content"/>
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/check_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/check_out"
+        android:textColor="#FFFFFF"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

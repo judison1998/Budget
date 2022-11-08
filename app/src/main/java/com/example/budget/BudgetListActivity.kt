@@ -1,7 +1,11 @@
 package com.example.budget
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.CheckBox
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +17,7 @@ class BudgetListActivity : AppCompatActivity(), SelectedItemsAdapter.OnClickList
     lateinit var cartAdapter: SelectedItemsAdapter
     lateinit var cartItems:ArrayList<CartItem>
     lateinit var cart_recylerview: RecyclerView
+    lateinit var checkout: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +28,13 @@ class BudgetListActivity : AppCompatActivity(), SelectedItemsAdapter.OnClickList
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
 
+
+        cartItems = ArrayList()
+        checkout=findViewById(R.id.check_out)
+        checkout.setOnClickListener {
+            intent = Intent(this, CheckOutActivity::class.java)
+            startActivity(intent)
+        }
         cart_recylerview = findViewById(R.id.budget_recylerview)
         var database = BudgetDatabase.getInstance(application)
         val layoutManager = LinearLayoutManager(this,)
@@ -54,9 +66,5 @@ class BudgetListActivity : AppCompatActivity(), SelectedItemsAdapter.OnClickList
 
     }
 
-//    fun onClick(cartItem: CartItem) {
-//        val database = BudgetDatabase.getInstance(application)
-//        database.budgetDao().deleteById(id = cartItem.id)
-//    }
 
 }
