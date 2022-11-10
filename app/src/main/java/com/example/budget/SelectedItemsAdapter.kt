@@ -10,12 +10,13 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.budget.database.BudgetDatabase
 import com.example.budget.database.BudgetItem
 import com.example.budget.database.CartItem
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 
-class SelectedItemsAdapter(private val cartItems: ArrayList<CartItem>, val onClickInterface: OnClickListenerInterface) :
+class SelectedItemsAdapter(private val cartItems: ArrayList<CartItem>, private val application:Context) :
     RecyclerView.Adapter<SelectedItemsAdapter.SelectedItemViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -47,16 +48,14 @@ class SelectedItemsAdapter(private val cartItems: ArrayList<CartItem>, val onCli
             .into(holder.image)
 
         holder.price.text = cartItems[position].price.toString()
-
-//        holder.removeButton.setOnClickListener {
-//            clickInterface.onItemClick(cartItems[position])
-//        }
-
         holder.removeButton.setOnClickListener {
-            if (onClickInterface != null) {
-                onClickInterface!!.onClick(position)
-                removeItem(position)
-            }
+            var db = BudgetDatabase.getInstance(application)
+            var d :CartItem = cartItems.get(holder.adapterPosition)
+            db.budgetDao().deleteItem(d)
+            var position = holder.adapterPosition
+            cartItems.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position,cartItems.size)
         }
 
 
@@ -74,22 +73,6 @@ class SelectedItemsAdapter(private val cartItems: ArrayList<CartItem>, val onCli
 
     override fun getItemCount(): Int {
         return cartItems.size
-    }
-
-//    private var onClickListener: OnClickListener? = null
-//
-//    fun setOnClickListener(onClickListener: OnClickListener) {
-//        this.onClickListener = onClickListener
-//    }
-
-    interface OnClickListenerInterface {
-        fun onClick(position: Int) {
-        }
-    }
-
-    private fun removeItem(position: Int) {
-        cartItems.removeAt(position)
-        notifyItemRemoved(position)
     }
 
 

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.budget.database.BudgetDatabase
 import com.example.budget.database.CartItem
 
-class BudgetListActivity : AppCompatActivity(), SelectedItemsAdapter.OnClickListenerInterface {
+class BudgetListActivity : AppCompatActivity() {
 
     lateinit var cartAdapter: SelectedItemsAdapter
     lateinit var cartItems:ArrayList<CartItem>
@@ -27,31 +27,41 @@ class BudgetListActivity : AppCompatActivity(), SelectedItemsAdapter.OnClickList
         actionbar!!.title = "Cart"
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
-
+        toggleVisibility()
 
         cartItems = ArrayList()
         checkout=findViewById(R.id.check_out)
-        checkout.setOnClickListener {
-            intent = Intent(this, CheckOutActivity::class.java)
-            startActivity(intent)
-        }
+
+
         cart_recylerview = findViewById(R.id.budget_recylerview)
         var database = BudgetDatabase.getInstance(application)
         val layoutManager = LinearLayoutManager(this,)
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         cart_recylerview.layoutManager = layoutManager
 
-        cart_recylerview.adapter = null
-
-        cartItems = ArrayList()
         database.budgetDao().getAllCartItem().observe(this, Observer {
         cartItems.addAll(it)
             cartAdapter = SelectedItemsAdapter(cartItems, this)
-            cart_recylerview.setHasFixedSize(true)
             cart_recylerview.adapter = cartAdapter
             cartAdapter.notifyDataSetChanged()
         }
         )
+
+
+            checkout.setOnClickListener {
+                    intent = Intent(this, CheckOutActivity::class.java)
+                    startActivity(intent)
+            }
+    }
+    fun toggleVisibility() {
+        var db = BudgetDatabase.getInstance(application)
+        db.budgetDao().getAllCartItem().observe(this, Observer {
+            if (it.size >= 1) {
+                checkout.visibility = View.VISIBLE
+            } else {
+                checkout.visibility = View.GONE
+            }
+        })
 
     }
 
@@ -60,11 +70,6 @@ class BudgetListActivity : AppCompatActivity(), SelectedItemsAdapter.OnClickList
         return true
     }
 
-    override fun onClick(position: Int) {
-        val database = BudgetDatabase.getInstance(application)
-        database.budgetDao().deleteById(id = position)
-
-    }
 
 
 }

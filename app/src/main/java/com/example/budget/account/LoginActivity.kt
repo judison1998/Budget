@@ -49,7 +49,6 @@ class LoginActivity : AppCompatActivity() {
             signInGoogle()
         }
 
-
         //firebaseAuth = FirebaseAuth.getInstance()
         binding.textView.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
@@ -76,7 +75,6 @@ class LoginActivity : AppCompatActivity() {
 
             }
         }
-
         binding.dontHaveAccount.setOnClickListener {
             intent = Intent(this,RegisterActivity::class.java)
             startActivity(intent)
@@ -85,6 +83,11 @@ class LoginActivity : AppCompatActivity() {
     override fun onBackPressed() {
         val intent = Intent(this,ListActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
     private fun signInGoogle() {
         val signInIntent: Intent = mGoogleSignInClient.signInIntent
@@ -109,7 +112,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    // this is where we update the UI after Google signin takes place
     private fun UpdateUI(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
@@ -144,5 +146,6 @@ class LoginActivity : AppCompatActivity() {
 
 
     }
+
 
 }
