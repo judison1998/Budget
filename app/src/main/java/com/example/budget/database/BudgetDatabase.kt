@@ -3,12 +3,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-
-
-
-@Database(entities = [BudgetItem::class , CartItem::class],version = 4)
+@Database(entities = [BudgetItem::class , CartItem::class],version = 7)
 abstract class BudgetDatabase : RoomDatabase() {
-    abstract fun budgetDao() : BugetDao
+    abstract fun budgetDao() : BudgetDao
 
     companion object {
         @Volatile
@@ -29,6 +26,7 @@ abstract class BudgetDatabase : RoomDatabase() {
                 return instance
             }
         }
+
 
     }
 }

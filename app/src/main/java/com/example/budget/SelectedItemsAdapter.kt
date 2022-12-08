@@ -1,17 +1,14 @@
 package com.example.budget
 
 import android.content.Context
-import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.budget.database.BudgetDatabase
-import com.example.budget.database.BudgetItem
 import com.example.budget.database.CartItem
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
@@ -38,8 +35,8 @@ class SelectedItemsAdapter(private val cartItems: ArrayList<CartItem>, private v
 
         holder.itemName.text = cartItems[position].itemName
 
-        val baseUrl = "http://192.168.0.127/ishop/media/"
-        val pImage = baseUrl + data.image
+//        val baseUrl = "http://192.168.0.127/ishop/media/"
+        val pImage =  data.image
 
         Picasso.get().load(pImage)
             .placeholder(R.drawable.ic_launcher_foreground)

@@ -1,11 +1,9 @@
 package com.example.budget.account
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.budget.ListActivity
-import com.example.budget.R
 import com.example.budget.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -27,7 +25,7 @@ class RegisterActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.textView.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, `LoginActivity`::class.java)
             startActivity(intent)
         }
         binding.signUp.setOnClickListener {
@@ -38,13 +36,22 @@ class RegisterActivity : AppCompatActivity() {
             if (email.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()) {
                 if (pass == confirmPass) {
 
-                    firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            val intent = Intent(this, LoginActivity::class.java)
+                    firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {task ->
+                        if (task.isSuccessful) {
+                            val user = firebaseAuth.currentUser
+                            user?.sendEmailVerification()
+                           Toast.makeText(this,"verification email sent!",Toast.LENGTH_SHORT).show()
+
+//                            firebaseAuth.currentUser?.sendEmailVerification()?.addOnCompleteListener {
+//                                    task -> if (task.isSuccessful){
+//                                val user = firebaseAuth.currentUser
+//                                Toast.makeText(this,"verification email sent!",Toast.LENGTH_SHORT).show()
+//                            }
+//                            }
+                            val intent = Intent(this, `LoginActivity`::class.java)
                             startActivity(intent)
                         } else {
-                            Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-
+                            Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
                         }
                     }
                 } else {
@@ -56,7 +63,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
         binding.alreadyHaveAccount.setOnClickListener {
-            intent = Intent(this,LoginActivity::class.java)
+            intent = Intent(this,`LoginActivity`::class.java)
             startActivity(intent)
         }
     }

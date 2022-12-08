@@ -9,7 +9,6 @@
     android:padding="8dp"
     android:layout_height="match_parent"
     tools:context=".account.RegisterActivity">
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -66,18 +65,8 @@
         android:hint="Confirm Password"
         android:background="@drawable/box"
         android:layout_marginTop="18dp"/>
-    <TextView
-        android:padding="8dp"
-        android:textColor="#FFFFFF"
-        android:id="@+id/forgot_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="end"
-        android:text="forgot password?" />
     <Button
         android:backgroundTint="#FFF"
-
         android:id="@+id/signUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

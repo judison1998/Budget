@@ -1,13 +1,10 @@
 package com.example.budget.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
-interface BugetDao {
+interface BudgetDao {
     @Query("SELECT * FROM BudgetItem")
     fun getAllBudgetItems(): LiveData<List<BudgetItem>>
 
@@ -17,8 +14,8 @@ interface BugetDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(budgetItem: BudgetItem)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(budgetItems: List<BudgetItem>)
+//    @Insert(onConflict = OnConflictStrategy.REPLACE)
+//    fun insert(budgetItems: List<BudgetItem>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(cartItem : CartItem)
@@ -28,5 +25,8 @@ interface BugetDao {
 
     @Query("DELETE FROM Cart WHERE id = :id")
     fun deleteById(id: Int)
+
+    @Delete
+    fun deleteItem(item: CartItem)
 
 }

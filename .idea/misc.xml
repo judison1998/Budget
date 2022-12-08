@@ -3,10 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/KOTLIN PROJECTS/Budget/app/src/main/res/layout/activity_details.xml" value="0.1" />
+        <entry key="..\:/KOTLIN PROJECTS/Budget/app/src/main/res/layout/activity_forgot_password.xml" value="0.26614583333333336" />
+        <entry key="..\:/KOTLIN PROJECTS/Budget/app/src/main/res/layout/activity_forgot_password2.xml" value="0.16614583333333333" />
+        <entry key="..\:/KOTLIN PROJECTS/Budget/app/src/main/res/layout/activity_list.xml" value="0.26614583333333336" />
+        <entry key="..\:/KOTLIN PROJECTS/Budget/app/src/main/res/layout/activity_login.xml" value="0.18251928020565553" />
+        <entry key="..\:/KOTLIN PROJECTS/Budget/app/src/main/res/layout/activity_login2.xml" value="0.1" />
+        <entry key="..\:/KOTLIN PROJECTS/Budget/app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="..\:/KOTLIN PROJECTS/Budget/app/src/main/res/layout/dialog_forgot_password.xml" value="0.26614583333333336" />
+        <entry key="..\:/KOTLIN PROJECTS/Budget/app/src/main/res/layout/fragment_all.xml" value="0.22395833333333334" />
+        <entry key="..\:/KOTLIN PROJECTS/Budget/app/src/main/res/layout/fragment_detail.xml" value="0.22395833333333334" />
+        <entry key="..\:/KOTLIN PROJECTS/Budget/app/src/main/res/layout/item.xml" value="0.1546875" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/drawable/box.xml" value="0.2405" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/drawable/circular_background.xml" value="0.102" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/drawable/email.xml" value="0.1105" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/drawable/email_icon.xml" value="0.1335" />
+        <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/drawable/phone.xml" value="0.1395" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/activity_budget_list.xml" value="0.1" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/activity_help.xml" value="0.17037037037037037" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/activity_list.xml" value="0.1" />
@@ -21,6 +33,7 @@
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/activity_user_list.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/budget_list_item.xml" value="0.1" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/fragment_all.xml" value="0.1" />
+        <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/fragment_detail.xml" value="0.16296296296296298" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/fragment_kids.xml" value="0.1" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/fragment_men.xml" value="0.1" />
         <entry key="..\:/Users/HANSU/OneDrive/Desktop/KOTLIN PROJECTS/Budget/app/src/main/res/layout/item.xml" value="0.1" />

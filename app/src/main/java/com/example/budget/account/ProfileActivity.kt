@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.databinding.adapters.TextViewBindingAdapter.setText
 import com.example.budget.ListActivity
 import com.example.budget.R
 
@@ -13,7 +12,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
-import kotlin.system.exitProcess
 
 class ProfileActivity : AppCompatActivity() {
     lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -36,12 +34,12 @@ class ProfileActivity : AppCompatActivity() {
 
         binding.signOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            intent = Intent(this, LoginActivity::class.java)
+            intent = Intent(this, `LoginActivity`::class.java)
             startActivity(intent)
             finish()
 
             mGoogleSignInClient.signOut().addOnCompleteListener {
-                val intent = Intent(this, LoginActivity::class.java)
+                val intent = Intent(this, `LoginActivity`::class.java)
                 Toast.makeText(this, "Logging Out", Toast.LENGTH_SHORT).show()
                 startActivity(intent)
                 finish()
@@ -76,7 +74,7 @@ class ProfileActivity : AppCompatActivity() {
 
         }
         else {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, `LoginActivity`::class.java)
             startActivity(intent)
             finish()
         }

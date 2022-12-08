@@ -1,48 +1,58 @@
 package com.example.budget.database
-
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.example.budget.network.IshopApi
-//import com.example.budget.network.IshopApi
+import androidx.lifecycle.*
+import com.example.budget.network.ProductApi
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+class BudgetViewModel(val database: BudgetDao, application: Application) :
+    AndroidViewModel(application) {
+    private val _navigateToSelectedProperty = MutableLiveData<BudgetItem>()
+    private val _products = MutableLiveData<List<BudgetItem>>()
+    val products: LiveData<List<BudgetItem>>
+        get() = _products
 
+    val navigateToSelectedProperty: LiveData<BudgetItem>
+        get() = _navigateToSelectedProperty
 
-
-class BudgetViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val _status = MutableLiveData<String>()
-    val status: LiveData<String>
-        get() = _status
-//
-//    private val _products = MutableLiveData<List<ItemModal>>()
-//    val properties: LiveData<List<ItemModal>>
-//        get() = _products
-
-    private val budgetRepository: BudgetRepository
-
-    init {
-        val budgetDao = BudgetDatabase.getInstance(application).budgetDao()
-        budgetRepository = BudgetDatabaseRepository(budgetDao)
-
-//        getProducts()
+    fun displayPropertyDetails(budgetItem: BudgetItem) {
+        _navigateToSelectedProperty.value = budgetItem
     }
 
-    val allBudgetItems: LiveData<List<BudgetItem>> = budgetRepository.getAllBudgetItems()
+    private var viewModelJob = Job()
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-//    private fun getProducts() {
-//        viewModelScope.launch {
-//            try {
-//               val listResult = IshopApi.retrofitService.getProducts()
-//                _status.value = "Success: ${listResult.size} Products retrieved"
-//
-//            } catch (e:Exception){
-//                _status.value = "Failure: ${e.message}"
-//            }
-//
-//        }
-//
-//    }
+    init {
+        getAllProducts()
+    }
+    private fun getAllProducts() {
+        coroutineScope.launch {
+            var getProductsDeferred = ProductApi.retrofitService.getProducts()
+            try {
+                var listResult = getProductsDeferred.await()
+                if (listResult.isNotEmpty()) {
+                    _products.value = listResult
+                    for (i in 0 until listResult.size) {
+                        val Pid = listResult.get(i).productID
+                        val Pname = listResult.get(i).productName
+                        val Pprice = listResult.get(i).productPrice
+                        val Pimage = listResult.get(i).productImage
+                        val productModal = BudgetItem(Pid, Pname, Pprice, Pimage)
+                        database.insert(productModal)
+                    }
+                }
+            } catch (e: Exception) {
+                println(e.message)
+            }
+        }
+
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
+
 
 }

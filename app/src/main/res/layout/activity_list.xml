@@ -17,6 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"    >
 
+
         <!--    <FrameLayout-->
         <!--        android:id="@+id/container"-->
         <!--        android:layout_width="match_parent"-->
@@ -49,7 +50,7 @@
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appBarLayout"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="30dp"
                 app:tabBackground="@color/green_700"
                 app:layout_constraintBottom_toTopOf="@+id/viewPager"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -59,13 +60,13 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
+                android:layout_height="0dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"
                 app:layout_constraintTop_toBottomOf="@id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="30dp"
                 app:tabBackground="@color/green_500"
                 app:tabGravity="fill"
                 app:tabMode="fixed"

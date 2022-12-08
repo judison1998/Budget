@@ -12,7 +12,7 @@
         android:background="@drawable/newlogo"
         android:padding="8dp"
     android:layout_height="match_parent"
-    tools:context=".account.LoginActivity">
+    tools:context=".account.`LoginActivity.kt`">
 
     <TextView
         android:padding="8dp"

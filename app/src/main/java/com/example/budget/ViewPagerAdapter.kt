@@ -30,5 +30,6 @@ class ViewPagerAdapter(supportFragmentManager: FragmentManager) :
         // add each fragment and its title to the array list
         mFragmentList.add(fragment)
         mFragmentTitleList.add(title)
+
     }
 }

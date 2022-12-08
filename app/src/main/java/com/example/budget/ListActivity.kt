@@ -17,6 +17,8 @@ import com.example.budget.databinding.ActivityListBinding
 import com.example.budget.fragments.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.system.exitProcess
 
 class ListActivity : AppCompatActivity() {
@@ -41,6 +43,18 @@ class ListActivity : AppCompatActivity() {
         pager = findViewById(R.id.viewPager)
         tab = findViewById(R.id.tabs)
         bar = findViewById(R.id.toolbar)
+
+//        if (savedInstanceState == null) {
+//            supportFragmentManager.commit {
+//                replace(
+//                    R.id.frame_layout,
+//                    AllFragment.newInstance(),
+//                    AllFragment::class.java.simpleName
+//                )
+//            }
+//        }
+
+
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(AllFragment(), "All")
         adapter.addFragment(MenFragment(), "Men")
@@ -83,7 +97,7 @@ class ListActivity : AppCompatActivity() {
         val inflater = menuInflater
         inflater.inflate(R.menu.search_menu, menu)
         val searchItem: MenuItem = menu!!.findItem(R.id.actionSearch)
-        val searchView: SearchView = searchItem.getActionView() as SearchView
+        val searchView: SearchView = searchItem.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
@@ -104,14 +118,15 @@ class ListActivity : AppCompatActivity() {
         val filteredlist: ArrayList<BudgetItem> = ArrayList()
 
         for (item in itemList) {
-            if (item.productName.toLowerCase().contains(text.toLowerCase())) {
+            if (item.productName.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))) {
                 filteredlist.add(item)
             }
         }
         if (filteredlist.isEmpty()) {
             Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show()
         } else {
-            budgetAdapter.filterList(filteredlist)
+
+//            budgetAdapter.filterList(filteredlist)
         }
     }
 

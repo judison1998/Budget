@@ -1,79 +1,54 @@
 package com.example.budget
 
+
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.budget.database.BudgetItem
-import com.squareup.picasso.MemoryPolicy
-import com.squareup.picasso.Picasso
+import com.example.budget.databinding.ItemBinding
 
-class BudgetAdapter(private var itemList: List<BudgetItem>,
-                   val clickInterface: ClickInterface
-                    )
-    : RecyclerView.Adapter<BudgetAdapter.BudgetViewHolder>() {
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : BudgetViewHolder{
-            val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item, parent , false )
-            return BudgetViewHolder(itemView)
-
+class BudgetAdapter(val onClickListener: OnClickListener) :
+    ListAdapter<BudgetItem, BudgetAdapter.BudgetViewHolder>(DiffCallback) {
+    companion object DiffCallback : DiffUtil.ItemCallback<BudgetItem>() {
+        override fun areItemsTheSame(oldItem: BudgetItem, newItem: BudgetItem): Boolean {
+            return oldItem === newItem
         }
-    fun filterList(filterlist: ArrayList<BudgetItem>) {
-        itemList = filterlist
-        notifyDataSetChanged()
-    }
 
-        override fun onBindViewHolder(holder:BudgetViewHolder, position: Int) {
-            val data = itemList[position]
-            val itemName = data.productName
-            val price = data.productPrice
-
-            val baseUrl = "http://192.168.0.127/ishop/media/"
-            val pImage = baseUrl + data.productImage
-//            val pImage = "http://192.168.0.127/ishop/media/Jean_trousers.jpg"
-
-
-
-
-            holder.itemName.text = itemName
-            holder.price.text = price.toString()
-
-
-            Picasso.get().load(pImage)
-                .placeholder(R.drawable.ic_launcher_foreground)
-                .fit().centerCrop()
-                .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
-                .into(holder.image)
-
-
-
-            holder.cardView.setOnClickListener {
-                clickInterface.onItemClick(itemList[position])
-            }
-            holder.image.setOnClickListener {
-                clickInterface.onItemClick(itemList[position])
-            }
+        override fun areContentsTheSame(oldItem: BudgetItem, newItem: BudgetItem): Boolean {
+            return oldItem.productID == newItem.productID
         }
-        override fun getItemCount(): Int {
-        return itemList.size
-    }
-        class BudgetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)   {
-            var itemName : TextView = itemView.findViewById(R.id.item_name)
-            var price : TextView = itemView.findViewById(R.id.item_price)
-            var cardView :CardView = itemView.findViewById(R.id.card_item)
-            var image : ImageView = itemView.findViewById(R.id.imageView)
     }
 
-    interface ClickInterface {
-
-        fun onItemClick (budgetItem: BudgetItem)
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): BudgetAdapter.BudgetViewHolder {
+        return BudgetViewHolder(ItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
+    override fun onBindViewHolder(holder: BudgetAdapter.BudgetViewHolder, position: Int) {
+        val budgetItem = getItem(position)
+        holder.bind(budgetItem)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(budgetItem)
+        }
+    }
+
+    class BudgetViewHolder(private var binding: ItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(budgetItem: BudgetItem) {
+            binding.myItem = budgetItem
+            binding.executePendingBindings()
+        }
+    }
+
+    class OnClickListener(val clickListener: (budgetItem: BudgetItem) -> Unit) {
+        fun onClick(budgetItem: BudgetItem) = clickListener(budgetItem)
+    }
 }
+
 
 
 

@@ -17,16 +17,17 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".KidsActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
+            android:name=".account.LoginActivity"
             android:theme="@style/AppTheme.Budget"
+            android:exported="false" />
+        <activity
+            android:name=".account.ForgotPasswordActivity"
+            android:theme="@style/AppTheme.Budget"
+        android:exported="false" />
+        <activity
             android:name=".HelpActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/AppTheme.Budget">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -42,31 +43,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:theme="@style/AppTheme.Budget"
             android:name=".account.ProfileActivity"
-            android:exported="false" />
-        <activity android:name=".account.RegisterActivity"
-            android:theme="@style/AppTheme.Budget"/>
-        <activity android:name=".account.LoginActivity"
-            android:theme="@style/AppTheme.Budget"
-            />
+            android:exported="false"
+            android:theme="@style/AppTheme.Budget" />
         <activity
-            android:theme="@style/AppTheme.Budget"
+            android:name=".account.RegisterActivity"
+            android:theme="@style/AppTheme.Budget" />
+        <activity
             android:name=".CheckOutActivity"
-            android:exported="false"/>
-
+            android:exported="false"
+            android:theme="@style/AppTheme.Budget" />
         <activity
-            android:theme="@style/AppTheme.Budget"
             android:name=".BudgetListActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme.Budget" />
         <activity
             android:name=".ListActivity"
             android:exported="true"
             android:theme="@style/AppTheme.Budget" />
         <activity
-            android:theme="@style/AppTheme.Budget"
-            android:name=".DetailsActivity"
-            android:exported="false" />
+            android:name=".detail.DetailsActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.Budget" />
     </application>
 
 </manifest>
