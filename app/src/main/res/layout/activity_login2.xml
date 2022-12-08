@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/newlogo"
+            android:padding="8dp"
+            android:layout_height="match_parent"
+            tools:context=".account.`LoginActivity`">
+
+            <TextView
+                android:padding="8dp"
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:text="Login"
+                android:textSize="18dp"/>
+            <EditText
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/user_email"
+                android:gravity="start"
+                android:textColorHint="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:drawableLeft="@drawable/person"
+                android:hint="user name/ email"
+                android:background="@drawable/box"
+                android:layout_marginTop="32dp"/>
+            <EditText
+                android:padding="8dp"
+                android:textColorHint="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/password"
+                android:gravity="start"
+                android:textColor="#FFFFFF"
+                android:drawableLeft="@drawable/lock"
+                android:hint="Enter Password"
+                android:background="@drawable/box"
+                android:layout_marginTop="32dp"/>
+
+            <TextView
+                android:id="@+id/forgot_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="end"
+                android:padding="8dp"
+                android:text="forgot password?"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp" />
+
+            <Button
+                android:backgroundTint="#FFF"
+                android:id="@+id/login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textSize="18dp"
+
+                android:textColor="#1565C0"
+                android:text="Login" />
+
+            <Button
+                android:backgroundTint="#FFF"
+                android:layout_marginTop="10dp"
+                android:id="@+id/Signin"
+                android:drawableLeft="@drawable/google_button"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:padding="8dp"
+                android:text="Sign In With Google"
+                android:textColor="#1565C0"
+                android:textSize="18dp"
+                />
+            <TextView
+                android:padding="8dp"
+                android:id="@+id/dont_have_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="end"
+                android:textSize="18dp"
+                android:textColor="#FFFFFF"
+                android:text="Don't have an account? sign Up" />
+        </LinearLayout>
+    </ScrollView>
+
+</layout>
